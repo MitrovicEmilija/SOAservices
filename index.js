@@ -2,9 +2,15 @@ require('dotenv').config(); // Naloži okoljske spremenljivke iz .env datoteke
 const express = require('express'); // Uvozi Express
 const mongoose = require('mongoose'); // Uvozi Mongoose za povezavo z MongoDB
 const bodyParser = require('body-parser'); // Uvozi body-parser za obdelavo JSON podatkov
+const cors = require('cors');
 
 const app = express(); // Ustvari Express aplikacijo
 const port = process.env.PORT || 3000; // Nastavi vrata za aplikacijo
+app.use(cors({
+    origin: "http://localhost:3000", 
+    credentials: true, 
+}));
+
 
 // Middleware za obdelavo JSON podatkov
 app.use(express.json()); // Express že vključuje JSON parser, zato ni potrebno uporabiti body-parser
